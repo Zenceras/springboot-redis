@@ -1,0 +1,22 @@
+server:
+  port : ${SERVER_PORT:8080}
+logging:
+  level:
+    ROOT: WARN
+    net.ilchenko.redis:  ${LOG_LEVEL:DEBUG}
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+---
+
+spring:
+  application:
+    name: redis-rest
+  redis:
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:12345}
+---
+
+application:
+    redis:
+      set-messages: "set.messages"

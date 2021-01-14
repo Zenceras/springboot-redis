@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  app:
+    image: redis-rest:latest
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - redis
+    environment:
+      - SERVER_PORT=8080
+      - LOG_LEVEL=DEBUG
+      - REDIS_HOST=redis-container
+      - REDIS_PASSWORD=12345
+    ports:
+      - 8080:8080
+  redis:
+    image: redis
+    container_name: redis-container
+    command: redis-server --requirepass 12345
+    ports:
+    - 6379:6379
